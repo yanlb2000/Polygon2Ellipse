@@ -31,7 +31,7 @@ namespace Polygon2Ellipse
             cvsMain.Height = cvsHeight;
             System.Windows.Shapes.Polygon p = new ();
             p.Stroke = Brushes.Red;
-            p.StrokeThickness = 2;
+            p.StrokeThickness = 1;
             p.Fill = Brushes.LightSkyBlue;
             p.HorizontalAlignment = HorizontalAlignment.Left;
             p.VerticalAlignment = VerticalAlignment.Bottom;
