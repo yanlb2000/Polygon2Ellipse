@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Polygon2Ellipse"
         mc:Ignorable="d"
-        Title="From Polygon to Ellipse" Height="255" Width="412" Closing="Window_Closing">
+        Title="From Polygon to Ellipse" Height="268" Width="412" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid Margin="5,0,5,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -14,10 +14,12 @@
 
         </Grid.ColumnDefinitions>
         <Button x:Name="btnRun" Content="Start Polygon Vertexs" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="33" Width="203" Click="btnRun_Click" Grid.ColumnSpan="2" />
-        <TextBox x:Name="txtVertexCount" HorizontalAlignment="Left" Margin="229,38,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="69" Grid.Column="1"/>
+        <TextBox x:Name="txtVertexCount" HorizontalAlignment="Left" Margin="242,31,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="69" Grid.Column="1" Height="33"/>
         <Button x:Name="btnStep" Content="Steps" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Height="33" Width="203" Click="btnStep_Click" Grid.ColumnSpan="2" />
-        <TextBox x:Name="txtSteps" HorizontalAlignment="Left" Margin="229,105,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="69" Grid.Column="1"/>
-        <Label x:Name="lblStepCount" Content="Step count: 0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" Width="288"/>
+        <TextBox x:Name="txtSteps" HorizontalAlignment="Left" Margin="242,98,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="69" Grid.Column="1" Height="33"/>
+        <Label x:Name="lblStepCount" Content="Steps count: 0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="288"/>
+        <CheckBox x:Name="chkAutoRun" Content="Auto run steps every ms:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,150,0,0" Height="26" VerticalAlignment="Top" VerticalContentAlignment="Center" Click="chkAutoRun_Click" Width="227"/>
+        <TextBox x:Name="txtAutoRunInterval" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="242,150,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="69"/>
 
     </Grid>
 </Window>

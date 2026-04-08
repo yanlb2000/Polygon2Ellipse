@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 
 
@@ -21,13 +22,12 @@ namespace Polygon2Ellipse
     {
         UnitaryPolygon pg;
         frmDraw frmD1;
-        private static System.Timers.Timer aTimer;
+        private DispatcherTimer aTimer;
         int StepsCount = 0;
 
         public MainWindow()
         {
             InitializeComponent();
-            //SetTimer();
         }
 
         private void btnRun_Click(object sender, RoutedEventArgs e)
@@ -54,12 +54,10 @@ namespace Polygon2Ellipse
             Steps();
         }
 
-        private void TimerEvent(Object source, ElapsedEventArgs e)
+        private void TimerEvent(object? sender, EventArgs e)
         {
-            if (btnStep.IsPressed) 
-            {
-                Steps();
-            }
+            aTimer.Interval = TimeSpan.FromMilliseconds(Convert.ToInt32(txtAutoRunInterval.Text));
+            Steps();
         }
         private void Steps()
         {
@@ -81,12 +79,10 @@ namespace Polygon2Ellipse
 
         private void SetTimer()
         {
-            // Create a timer with a two second interval.
-            aTimer = new System.Timers.Timer(2000);
-            // Hook up the Elapsed event for the timer. 
-            aTimer.Elapsed += TimerEvent;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+            aTimer = new ();
+            aTimer.Interval = TimeSpan.FromSeconds(1);
+            aTimer.Tick += TimerEvent;
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -95,6 +91,23 @@ namespace Polygon2Ellipse
             {
                 frmD1.Close();
             }
+        }
+
+        private void chkAutoRun_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkAutoRun.IsChecked == true)
+            {
+                aTimer.Start();
+            }
+            else
+            {
+                aTimer.Stop();
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetTimer();
         }
     }
 }
