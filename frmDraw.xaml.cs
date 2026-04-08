@@ -29,13 +29,13 @@ namespace Polygon2Ellipse
             double cvsHeight = grdMain.ActualHeight;
             cvsMain.Width = cvsWidth;
             cvsMain.Height = cvsHeight;
-            System.Windows.Shapes.Polygon p = new System.Windows.Shapes.Polygon();
+            System.Windows.Shapes.Polygon p = new ();
             p.Stroke = Brushes.Red;
             p.StrokeThickness = 2;
             p.Fill = Brushes.LightSkyBlue;
             p.HorizontalAlignment = HorizontalAlignment.Left;
             p.VerticalAlignment = VerticalAlignment.Bottom;
-            PointCollection pc = new PointCollection();
+            PointCollection pc = new ();
             for (int i = 0; i<pg.VertexCount; i++)
             {
                 pc.Add(new Point(pg.Vertexs[i].X * cvsWidth, pg.Vertexs[i].Y * cvsHeight));

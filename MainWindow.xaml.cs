@@ -63,6 +63,8 @@ namespace Polygon2Ellipse
         }
         private void Steps()
         {
+            if (pg == null)
+                return;
             if (pg.VertexCount == 0)
                 return;
             if (frmD1 == null)

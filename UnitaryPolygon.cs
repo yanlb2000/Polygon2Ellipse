@@ -12,16 +12,20 @@ namespace Polygon2Ellipse
         private Point[] VB;
         public Point[] Vertexs {  get; private set; }
         private bool bUseA = true;
+        private double Margin;
+        private double MaxWidth;
         public UnitaryPolygon(int n) 
         {
             VertexCount = n;
+            Margin = 0.05;
+            MaxWidth = 1 - Margin*2;
             VA = new Point[VertexCount];
             VB = new Point[VertexCount];
             Random rand = new ();
 
             for (int i = 0; i < VertexCount; i++)
             {
-                VA[i] = new Point(0.05 + 0.9 * rand.NextDouble(), 0.05 + 0.9 * rand.NextDouble());
+                VA[i] = new Point(Margin + MaxWidth * rand.NextDouble(), Margin + MaxWidth * rand.NextDouble());
                 VB[i] = new Point(0, 0);
             }
             Vertexs = VA;
@@ -47,27 +51,17 @@ namespace Polygon2Ellipse
         public void Unitary()
         {
             Vertexs = bUseA ? VA : VB;
-            double maxX = 0;
-            double maxY = 0;
-            double minX = 1;
-            double minY = 1;
-
-            for (int i = 0; i < VertexCount;i++)
-            {
-                if (Vertexs[i].X > maxX)
-                    maxX = Vertexs[i].X;
-                if (Vertexs[i].Y > maxY)
-                    maxY = Vertexs[i].Y;
-                if (Vertexs[i].X < minX)
-                    minX = Vertexs[i].X;
-                if (Vertexs[i].Y < minY)
-                    minY = Vertexs[i].Y;
-            }
+            double maxX = Vertexs.Max(v=>v.X);
+            double maxY = Vertexs.Max(v=>v.Y);
+            double minX = Vertexs.Min(v=>v.X);
+            double minY = Vertexs.Min(v=>v.Y);
+            double LenX = maxX - minX;
+            double LenY = maxY - minY;           
 
             for (int i = 0; i < VertexCount; i++)
             {
-                Vertexs[i].X = 0.05 + 0.9 * (Vertexs[i].X - minX) / (maxX - minX);
-                Vertexs[i].Y = 0.05 + 0.9 * (Vertexs[i].Y - minY) / (maxY - minY);
+                Vertexs[i].X = Margin + MaxWidth * (Vertexs[i].X - minX) / LenX;
+                Vertexs[i].Y = Margin + MaxWidth * (Vertexs[i].Y - minY) / LenY;
             }
         } //Unitary
 
